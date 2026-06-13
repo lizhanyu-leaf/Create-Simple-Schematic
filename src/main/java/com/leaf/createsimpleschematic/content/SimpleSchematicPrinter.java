@@ -3,11 +3,11 @@ package com.leaf.createsimpleschematic.content;
 import com.simibubi.create.content.contraptions.StructureTransform;
 import com.simibubi.create.content.schematics.SchematicPrinter;
 import com.simibubi.create.content.schematics.SchematicProcessor;
-import com.simibubi.create.content.schematics.SchematicWorld;
-import com.simibubi.create.foundation.utility.BBHelper;
-import com.leaf.createsimpleschematic.CreateAndesiteAbound;
+import com.leaf.createsimpleschematic.CreateSimpleSchematic;
 import com.leaf.createsimpleschematic.mixin.SchematicPrinterAccessor;
-import com.leaf.createsimpleschematic.mixin.SchematicWorldAccessor;
+import com.leaf.createsimpleschematic.mixin.SchematicLevelAccessor;
+import net.createmod.catnip.levelWrappers.SchematicLevel;
+import net.createmod.catnip.math.BBHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
@@ -32,7 +32,7 @@ public class SimpleSchematicPrinter extends SchematicPrinter {
 
         StructureTemplate activeTemplate = SimpleSchematicItem.loadSchematic(
                 world.holderLookup(Registries.BLOCK), blueprint);
-        SchematicWorld blockReader = new SchematicWorld(anchor, world);
+        SchematicLevel blockReader = new SchematicLevel(anchor, world);
         StructurePlaceSettings settings = new StructurePlaceSettings();
         settings.setRotation(rotation);
         settings.setMirror(mirror);
@@ -48,7 +48,7 @@ public class SimpleSchematicPrinter extends SchematicPrinter {
             activeTemplate.placeInWorld(
                     blockReader, anchor, anchor, settings, blockReader.getRandom(), Block.UPDATE_CLIENTS);
         } catch (Exception e) {
-            CreateAndesiteAbound.LOGGER.error("Failed to load Schematic for Printing", e);
+            CreateSimpleSchematic.LOGGER.error("Failed to load Schematic for Printing", e);
             accessor.setSchematicLoaded(true);
             accessor.setIsErrored(true);
             return;
@@ -56,7 +56,7 @@ public class SimpleSchematicPrinter extends SchematicPrinter {
 
         BlockPos extraBounds = StructureTemplate.calculateRelativePosition(
                 settings, new BlockPos(activeTemplate.getSize()).offset(-1, -1, -1));
-        ((SchematicWorldAccessor) blockReader).setBounds(BBHelper.encapsulate(blockReader.getBounds(), extraBounds));
+        ((SchematicLevelAccessor) blockReader).setBounds(BBHelper.encapsulate(blockReader.getBounds(), extraBounds));
 
         StructureTransform transform = new StructureTransform(settings.getRotationPivot(), Direction.Axis.Y,
                 settings.getRotation(), settings.getMirror());

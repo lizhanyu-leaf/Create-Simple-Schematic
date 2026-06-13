@@ -5,18 +5,20 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.AllKeys;
 import com.simibubi.create.content.contraptions.StructureTransform;
 import com.simibubi.create.content.schematics.SchematicProcessor;
-import com.simibubi.create.content.schematics.SchematicWorld;
 import com.simibubi.create.content.schematics.client.*;
 import com.simibubi.create.content.schematics.client.tools.ToolType;
-import com.simibubi.create.foundation.outliner.AABBOutline;
-import com.simibubi.create.foundation.render.SuperRenderTypeBuffer;
-import com.simibubi.create.foundation.utility.AnimationTickHolder;
-import com.simibubi.create.foundation.utility.Couple;
-import com.simibubi.create.foundation.utility.Lang;
 import com.leaf.createsimpleschematic.AllItems;
 import com.leaf.createsimpleschematic.AllPackets;
-import com.leaf.createsimpleschematic.CreateAndesiteAbound;
+import com.leaf.createsimpleschematic.CreateSimpleSchematic;
 import com.leaf.createsimpleschematic.content.tools.SimpleToolType;
+import com.simibubi.create.foundation.blockEntity.IMultiBlockEntityContainer;
+import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
+import com.simibubi.create.foundation.utility.CreateLang;
+import net.createmod.catnip.animation.AnimationTickHolder;
+import net.createmod.catnip.data.Couple;
+import net.createmod.catnip.levelWrappers.SchematicLevel;
+import net.createmod.catnip.outliner.AABBOutline;
+import net.createmod.catnip.render.SuperRenderTypeBuffer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
@@ -40,7 +42,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 
 import java.util.List;
-import java.util.Vector;
 
 public class SimpleSchematicHandler extends SchematicHandler {
 
@@ -55,14 +56,11 @@ public class SimpleSchematicHandler extends SchematicHandler {
     private ItemStack activeSchematicItem;
     private AABBOutline outline;
 
-    private final Vector<SchematicRenderer> renderers;
+    private final SchematicRenderer[] renderers = new SchematicRenderer[3];
     private final SchematicHotbarSlotOverlay overlay;
     private ToolSelectionScreen selectionScreen;
 
     public SimpleSchematicHandler() {
-        renderers = new Vector<>(3);
-        for (int i = 0; i < renderers.capacity(); i++)
-            renderers.add(new SchematicRenderer());
 
         overlay = new SchematicHotbarSlotOverlay();
         currentTool = SimpleToolType.DEPLOY;
@@ -87,7 +85,7 @@ public class SimpleSchematicHandler extends SchematicHandler {
         if (activeSchematicItem != null && transformation != null)
             transformation.tick();
 
-        renderers.forEach(SchematicRenderer::tick);
+//        renderers.forEach(SchematicRenderer::tick);
 
         // 检查玩家手持物，设置渲染状态
         ItemStack stackBefore = activeSchematicItem;
@@ -163,9 +161,9 @@ public class SimpleSchematicHandler extends SchematicHandler {
             return;
 
         // 创建蓝图世界
-        SchematicWorld w = new SchematicWorld(clientWorld);
-        SchematicWorld wMirroredFB = new SchematicWorld(clientWorld);
-        SchematicWorld wMirroredLR = new SchematicWorld(clientWorld);
+        SchematicLevel w = new SchematicLevel(clientWorld);
+        SchematicLevel wMirroredFB = new SchematicLevel(clientWorld);
+        SchematicLevel wMirroredLR = new SchematicLevel(clientWorld);
         StructurePlaceSettings placementSettings = new StructurePlaceSettings();
 
         // 放置到蓝图世界
@@ -173,10 +171,10 @@ public class SimpleSchematicHandler extends SchematicHandler {
             schematic.placeInWorld(w, BlockPos.ZERO, BlockPos.ZERO, placementSettings, w.getRandom(), Block.UPDATE_CLIENTS);
             for (BlockEntity blockEntity : w.getBlockEntities())
                 blockEntity.setLevel(w);
-            w.fixControllerBlockEntities();
+            this.fixControllerBlockEntities(w);
         } catch (Exception e) {
-            player.displayClientMessage(Lang.translate("schematic.error").component(), false);
-            CreateAndesiteAbound.LOGGER.error("Failed to load Schematic for Previewing", e);
+            player.displayClientMessage(CreateLang.translate("schematic.error").component(), false);
+            CreateSimpleSchematic.LOGGER.error("Failed to load Schematic for Previewing", e);
             return;
         }
 
@@ -196,13 +194,34 @@ public class SimpleSchematicHandler extends SchematicHandler {
                     placementSettings.getMirror());
             for (BlockEntity be : world.getRenderedBlockEntities())
                 transform.apply(be);
-            world.fixControllerBlockEntities();
+            this.fixControllerBlockEntities(world);
         });
 
         // 绑定到渲染器
-        renderers.get(0).display(w);
-        renderers.get(1).display(wMirroredFB);
-        renderers.get(2).display(wMirroredLR);
+        renderers[0] = new SchematicRenderer(w);
+        renderers[1] =  new SchematicRenderer(wMirroredFB);
+        renderers[2] =  new SchematicRenderer(wMirroredLR);
+    }
+
+    private void fixControllerBlockEntities(SchematicLevel level) {
+        for(BlockEntity blockEntity : level.getBlockEntities()) {
+            if (blockEntity instanceof IMultiBlockEntityContainer multiBlockEntity) {
+                BlockPos lastKnown = multiBlockEntity.getLastKnownPos();
+                BlockPos current = blockEntity.getBlockPos();
+                if (lastKnown != null && !multiBlockEntity.isController() && !lastKnown.equals(current)) {
+                    BlockPos controllerPos = multiBlockEntity.getController();
+                    if (controllerPos == null)
+                        continue;
+                    BlockPos newControllerPos = controllerPos.offset(current.subtract(lastKnown));
+                    if (multiBlockEntity instanceof SmartBlockEntity sbe) {
+                        sbe.markVirtual();
+                    }
+
+                    multiBlockEntity.setController(newControllerPos);
+                }
+            }
+        }
+
     }
 
     @Override
@@ -220,16 +239,16 @@ public class SimpleSchematicHandler extends SchematicHandler {
         ms.pushPose();
         transformation.applyTransformations(ms, camera);
 
-        if (!renderers.isEmpty()) {
+        if (renderers.length != 0) {
             float pt = AnimationTickHolder.getPartialTicks();
             boolean lr = transformation.getScaleLR().getValue(pt) < 0;
             boolean fb = transformation.getScaleFB().getValue(pt) < 0;
-            if (lr && !fb)
-                renderers.get(2).render(ms, buffer);
-            else if (fb && !lr)
-                renderers.get(1).render(ms, buffer);
-            else
-                renderers.get(0).render(ms, buffer);
+            if (lr && !fb && this.renderers[2] != null)
+                renderers[2].render(ms, buffer);
+            else if (fb && !lr && this.renderers[1] != null)
+                renderers[1].render(ms, buffer);
+            else if (this.renderers[0] != null)
+                renderers[0].render(ms, buffer);
         }
 
         if (active)
@@ -241,6 +260,8 @@ public class SimpleSchematicHandler extends SchematicHandler {
     @Override
     public void updateRenderers() {
         for (SchematicRenderer renderer : renderers) {
+            if (renderer == null)
+                continue;
             renderer.update();
         }
     }
@@ -273,7 +294,7 @@ public class SimpleSchematicHandler extends SchematicHandler {
     public void onKeyInput(int key, boolean pressed) {
         if (!active)
             return;
-        if (key != AllKeys.TOOL_MENU.getBoundCode())
+        if (key != AllKeys.TOOL_MENU.getKeybind().getKey().getValue())
             return;
 
         if (pressed && !selectionScreen.focused)
@@ -373,7 +394,7 @@ public class SimpleSchematicHandler extends SchematicHandler {
 
     public void setInactive() {
         active = false;
-        for (var it: renderers)
-            it.setActive(false);
+//        for (var it: renderers)
+//            it.active = false;
     }
 }

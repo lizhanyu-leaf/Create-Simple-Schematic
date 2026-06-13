@@ -2,9 +2,11 @@ package com.leaf.createsimpleschematic.foundation;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.simibubi.create.foundation.render.SuperRenderTypeBuffer;
-import com.simibubi.create.foundation.utility.worldWrappers.WrappedClientWorld;
 import com.leaf.createsimpleschematic.content.SimpleSchematicHandler;
+import com.simibubi.create.CreateClient;
+import net.createmod.catnip.levelWrappers.WrappedClientLevel;
+import net.createmod.catnip.render.DefaultSuperRenderTypeBuffer;
+import net.createmod.catnip.render.SuperRenderTypeBuffer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.world.entity.player.Player;
@@ -74,7 +76,7 @@ public class ClientEvents {
     @SubscribeEvent
     public static void onLoadWorld(LevelEvent.Load event) {
         LevelAccessor world = event.getLevel();
-        if (world.isClientSide() && world instanceof ClientLevel && !(world instanceof WrappedClientWorld)) {
+        if (world.isClientSide() && world instanceof ClientLevel && !(world instanceof WrappedClientLevel)) {
             SimpleSchematicHandler.SIMPLE_SCHEMATIC_HANDLER.updateRenderers();
         }
     }
@@ -92,7 +94,7 @@ public class ClientEvents {
             return;
 
         PoseStack ms = event.getPoseStack();
-        SuperRenderTypeBuffer buffer = SuperRenderTypeBuffer.getInstance();
+        SuperRenderTypeBuffer buffer = DefaultSuperRenderTypeBuffer.getInstance();
         Vec3 camera = Minecraft.getInstance().gameRenderer.getMainCamera().getPosition();
 
         ms.pushPose();

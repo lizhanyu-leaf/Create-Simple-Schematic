@@ -1,7 +1,7 @@
 package com.leaf.createsimpleschematic.mixin;
 
 import com.simibubi.create.content.schematics.SchematicPrinter;
-import com.simibubi.create.content.schematics.SchematicWorld;
+import net.createmod.catnip.levelWrappers.SchematicLevel;
 import net.minecraft.core.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
@@ -14,7 +14,7 @@ public interface SchematicPrinterAccessor {
     void setSchematicAnchor(BlockPos anchor);
 
     @Accessor("blockReader")
-    void setBlockReader(SchematicWorld world);
+    void setBlockReader(SchematicLevel world);
 
     @Accessor("schematicLoaded")
     void setSchematicLoaded(boolean loaded);

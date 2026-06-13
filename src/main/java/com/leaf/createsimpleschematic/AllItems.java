@@ -3,7 +3,7 @@ package com.leaf.createsimpleschematic;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.leaf.createsimpleschematic.content.SimpleSchematicItem;
 
-import static com.leaf.createsimpleschematic.CreateAndesiteAbound.REGISTRATE;
+import static com.leaf.createsimpleschematic.CreateSimpleSchematic.REGISTRATE;
 
 
 public class AllItems {

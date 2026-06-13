@@ -19,7 +19,7 @@ public enum AllPackets {
 
     PLACE_SCHEMATIC(SimpleSchematicPlacePacket.class, SimpleSchematicPlacePacket::new, PLAY_TO_SERVER);
 
-    public static final ResourceLocation CHANNEL_NAME = ResourceLocation.fromNamespaceAndPath(CreateAndesiteAbound.MOD_ID, "main");
+    public static final ResourceLocation CHANNEL_NAME = ResourceLocation.fromNamespaceAndPath(CreateSimpleSchematic.MOD_ID, "main");
     public static final int NETWORK_VERSION = 3;
     public static final String NETWORK_VERSION_STR = String.valueOf(NETWORK_VERSION);
     private static SimpleChannel channel;

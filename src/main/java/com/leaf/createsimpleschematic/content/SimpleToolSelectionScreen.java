@@ -7,8 +7,8 @@ import com.simibubi.create.AllKeys;
 import com.simibubi.create.content.schematics.client.ToolSelectionScreen;
 import com.simibubi.create.content.schematics.client.tools.ToolType;
 import com.simibubi.create.foundation.gui.AllGuiTextures;
-import com.simibubi.create.foundation.utility.Lang;
 import com.leaf.createsimpleschematic.mixin.ToolSelectionScreenAccessor;
+import com.simibubi.create.foundation.utility.CreateLang;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 
@@ -39,7 +39,8 @@ public class SimpleToolSelectionScreen extends ToolSelectionScreen {
         RenderSystem.enableBlend();
         RenderSystem.setShaderColor(.8f, 1.1f, 0.5f, focused ? 7 / 8f : 1 / 2f);
 
-        graphics.blit(gray.location, x - 15, y, gray.startX, gray.startY, w, h, gray.width, gray.height);
+        graphics.blit(
+                gray.location, x - 15, y, gray.getStartX(), gray.getStartY(), w, h, gray.getWidth(), gray.getHeight());
 
         float toolTipAlpha = accessor.getYOffset() / 10;
         List<Component> toolTip = tools.get(selection).getDescription();
@@ -47,7 +48,8 @@ public class SimpleToolSelectionScreen extends ToolSelectionScreen {
 
         if (toolTipAlpha > 0.25f) {
             RenderSystem.setShaderColor(.5f, .9f, .4f, toolTipAlpha);
-            graphics.blit(gray.location, x - 15, y + 33, gray.startX, gray.startY, w, h + 22, gray.width, gray.height);
+            graphics.blit(
+                    gray.location, x - 15, y + 33, gray.getStartX(), gray.getStartY(), w, h + 22, gray.getWidth(), gray.getHeight());
             RenderSystem.setShaderColor(1, 1, 1, 1);
 
             if (!toolTip.isEmpty())
@@ -65,7 +67,7 @@ public class SimpleToolSelectionScreen extends ToolSelectionScreen {
             String keyName = AllKeys.TOOL_MENU.getBoundKey();
             int width = minecraft.getWindow().getGuiScaledWidth();
             if (!focused)
-                graphics.drawCenteredString(minecraft.font, Lang.translateDirect(holdToFocus, keyName), width / 2,
+                graphics.drawCenteredString(minecraft.font, CreateLang.translateDirect(holdToFocus, keyName), width / 2,
                         y - 10, 0xCCDDFF);
             else
                 graphics.drawCenteredString(minecraft.font, scrollToCycle, width / 2, y - 10, 0xCCDDFF);

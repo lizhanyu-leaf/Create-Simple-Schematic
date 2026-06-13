@@ -8,8 +8,8 @@
     "minVersion": "0.5.2"
   },
   "mixins": [
-    "SchematicPrinterAccessor",
-    "SchematicWorldAccessor"
+    "SchematicLevelAccessor",
+    "SchematicPrinterAccessor"
   ],
   "client": [
     "ToolSelectionScreenAccessor"
