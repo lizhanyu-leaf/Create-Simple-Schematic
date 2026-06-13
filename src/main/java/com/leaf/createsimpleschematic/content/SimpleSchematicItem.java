@@ -38,7 +38,7 @@ public class SimpleSchematicItem extends Item {
         } else {
             return Component.literal(name)
                     .withStyle(ChatFormatting.LIGHT_PURPLE)
-                    .append(Component.translatable("item.createandesiteabound.simple_schematic.dash")
+                    .append(Component.translatable("item.createsimpleschematic.simple_schematic.dash")
                             .withStyle(ChatFormatting.GRAY))
                     .append(Component.translatable(key)
                             .withStyle(ChatFormatting.GOLD));

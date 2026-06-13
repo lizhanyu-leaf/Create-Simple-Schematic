@@ -50,7 +50,7 @@ public class SimpleToolSelectionScreen extends ToolSelectionScreen {
             graphics.blit(gray.location, x - 15, y + 33, gray.startX, gray.startY, w, h + 22, gray.width, gray.height);
             RenderSystem.setShaderColor(1, 1, 1, 1);
 
-            if (toolTip.size() > 0)
+            if (!toolTip.isEmpty())
                 graphics.drawString(font, toolTip.get(0), x - 10, y + 38, 0xEEEEEE + stringAlphaComponent, false);
             if (toolTip.size() > 1)
                 graphics.drawString(font, toolTip.get(1), x - 10, y + 50, 0xCCDDFF + stringAlphaComponent, false);
