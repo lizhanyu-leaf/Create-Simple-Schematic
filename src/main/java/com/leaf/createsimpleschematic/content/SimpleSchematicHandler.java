@@ -226,15 +226,15 @@ public class SimpleSchematicHandler extends SchematicHandler {
 
     @Override
     public void render(PoseStack ms, SuperRenderTypeBuffer buffer, Vec3 camera) {
+        if (!active)
+            return;
         boolean present = activeSchematicItem != null;
-        if (!active && !present)
+        if (!present)
             return;
 
-        if (active) {
-            ms.pushPose();
-            currentTool.getTool().renderTool(ms, buffer, camera);
-            ms.popPose();
-        }
+        ms.pushPose();
+        currentTool.getTool().renderTool(ms, buffer, camera);
+        ms.popPose();
 
         ms.pushPose();
         transformation.applyTransformations(ms, camera);
@@ -394,7 +394,6 @@ public class SimpleSchematicHandler extends SchematicHandler {
 
     public void setInactive() {
         active = false;
-//        for (var it: renderers)
-//            it.active = false;
+
     }
 }
