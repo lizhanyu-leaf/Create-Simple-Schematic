@@ -1,4 +1,4 @@
-package com.leaf.createsimpleschematic.content.tools;
+package com.leaf.createsimpleschematic.content.deploy.tools;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.AllSpecialTextures;
@@ -6,7 +6,7 @@ import com.simibubi.create.content.schematics.client.tools.FlipTool;
 import com.simibubi.create.foundation.outliner.AABBOutline;
 import com.simibubi.create.foundation.render.SuperRenderTypeBuffer;
 import com.simibubi.create.foundation.utility.AnimationTickHolder;
-import com.leaf.createsimpleschematic.content.SimpleSchematicHandler;
+import com.leaf.createsimpleschematic.content.deploy.SimpleSchematicHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.AABB;

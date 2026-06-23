@@ -1,6 +1,6 @@
 package com.leaf.createsimpleschematic.foundation;
 
-import com.leaf.createsimpleschematic.content.SimpleSchematicHandler;
+import com.leaf.createsimpleschematic.content.deploy.SimpleSchematicHandler;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import org.jetbrains.annotations.NotNull;

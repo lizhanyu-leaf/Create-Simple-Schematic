@@ -8,11 +8,11 @@
     "minVersion": "0.5.2"
   },
   "mixins": [
-    "SchematicPrinterAccessor",
-    "SchematicWorldAccessor"
+    "schematic.SchematicPrinterAccessor",
+    "schematic.SchematicWorldAccessor"
   ],
   "client": [
-    "ToolSelectionScreenAccessor"
+    "schematic.ToolSelectionScreenAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

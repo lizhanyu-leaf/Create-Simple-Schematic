@@ -1,4 +1,4 @@
-package com.leaf.createsimpleschematic.mixin;
+package com.leaf.createsimpleschematic.mixin.schematic;
 
 import com.simibubi.create.content.schematics.client.ToolSelectionScreen;
 import org.spongepowered.asm.mixin.Mixin;

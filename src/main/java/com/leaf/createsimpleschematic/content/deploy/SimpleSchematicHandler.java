@@ -1,4 +1,4 @@
-package com.leaf.createsimpleschematic.content;
+package com.leaf.createsimpleschematic.content.deploy;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -15,8 +15,8 @@ import com.simibubi.create.foundation.utility.Couple;
 import com.simibubi.create.foundation.utility.Lang;
 import com.leaf.createsimpleschematic.AllItems;
 import com.leaf.createsimpleschematic.AllPackets;
-import com.leaf.createsimpleschematic.CreateAndesiteAbound;
-import com.leaf.createsimpleschematic.content.tools.SimpleToolType;
+import com.leaf.createsimpleschematic.CreateSimpleSchematic;
+import com.leaf.createsimpleschematic.content.deploy.tools.SimpleToolType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
@@ -176,7 +176,7 @@ public class SimpleSchematicHandler extends SchematicHandler {
             w.fixControllerBlockEntities();
         } catch (Exception e) {
             player.displayClientMessage(Lang.translate("schematic.error").component(), false);
-            CreateAndesiteAbound.LOGGER.error("Failed to load Schematic for Previewing", e);
+            CreateSimpleSchematic.LOGGER.error("Failed to load Schematic for Previewing", e);
             return;
         }
 

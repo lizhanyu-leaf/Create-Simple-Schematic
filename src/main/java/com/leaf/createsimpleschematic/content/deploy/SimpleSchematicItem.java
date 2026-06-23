@@ -1,6 +1,6 @@
-package com.leaf.createsimpleschematic.content;
+package com.leaf.createsimpleschematic.content.deploy;
 
-import com.leaf.createsimpleschematic.CreateAndesiteAbound;
+import com.leaf.createsimpleschematic.CreateSimpleSchematic;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.nbt.CompoundTag;
@@ -82,7 +82,7 @@ public class SimpleSchematicItem extends Item {
             CompoundTag nbt = NbtIo.read(stream, new NbtAccounter(0x20000000L));
             t.load(lookup, nbt);
         } catch (IOException e) {
-            CreateAndesiteAbound.LOGGER.warn("Failed to read schematic", e);
+            CreateSimpleSchematic.LOGGER.warn("Failed to read schematic", e);
         }
 
         return t;

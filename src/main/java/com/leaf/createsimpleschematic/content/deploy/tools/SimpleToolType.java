@@ -1,4 +1,4 @@
-package com.leaf.createsimpleschematic.content.tools;
+package com.leaf.createsimpleschematic.content.deploy.tools;
 
 import com.simibubi.create.content.schematics.client.tools.*;
 import com.leaf.createsimpleschematic.AllConfig;

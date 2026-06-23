@@ -1,13 +1,13 @@
-package com.leaf.createsimpleschematic.content;
+package com.leaf.createsimpleschematic.content.deploy;
 
 import com.simibubi.create.content.contraptions.StructureTransform;
 import com.simibubi.create.content.schematics.SchematicPrinter;
 import com.simibubi.create.content.schematics.SchematicProcessor;
 import com.simibubi.create.content.schematics.SchematicWorld;
 import com.simibubi.create.foundation.utility.BBHelper;
-import com.leaf.createsimpleschematic.CreateAndesiteAbound;
-import com.leaf.createsimpleschematic.mixin.SchematicPrinterAccessor;
-import com.leaf.createsimpleschematic.mixin.SchematicWorldAccessor;
+import com.leaf.createsimpleschematic.CreateSimpleSchematic;
+import com.leaf.createsimpleschematic.mixin.schematic.SchematicPrinterAccessor;
+import com.leaf.createsimpleschematic.mixin.schematic.SchematicWorldAccessor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
@@ -48,7 +48,7 @@ public class SimpleSchematicPrinter extends SchematicPrinter {
             activeTemplate.placeInWorld(
                     blockReader, anchor, anchor, settings, blockReader.getRandom(), Block.UPDATE_CLIENTS);
         } catch (Exception e) {
-            CreateAndesiteAbound.LOGGER.error("Failed to load Schematic for Printing", e);
+            CreateSimpleSchematic.LOGGER.error("Failed to load Schematic for Printing", e);
             accessor.setSchematicLoaded(true);
             accessor.setIsErrored(true);
             return;

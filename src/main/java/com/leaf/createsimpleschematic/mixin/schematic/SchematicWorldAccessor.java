@@ -1,4 +1,4 @@
-package com.leaf.createsimpleschematic.mixin;
+package com.leaf.createsimpleschematic.mixin.schematic;
 
 import com.simibubi.create.content.schematics.SchematicWorld;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
