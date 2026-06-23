@@ -1,4 +1,12 @@
 {
   "item.createsimpleschematic.simple_schematic": "Engineering Set",
-  "item.createsimpleschematic.simple_schematic.dash": " - "
+  "item.createsimpleschematic.simple_schematic.dash": " - ",
+  "item.createsimpleschematic.simple_packer": "Boxed Slime",
+  "css.packer.abort": "Removed selection.",
+  "css.packer.dimensions": "Selection Dimensions: %sx%sx%s",
+  "css.packer.firstPos": "First position set.",
+  "css.packer.noTarget": "Hold [Ctrl] to select Air blocks.",
+  "css.packer.secondPos": "Second position set.",
+  "css.packer.error.size": "Selection size does not match any schematic.",
+  "css.packer.error.block": "Invalid structure. Check for missing blocks."
 }
