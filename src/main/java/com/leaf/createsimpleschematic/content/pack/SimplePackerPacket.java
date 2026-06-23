@@ -77,8 +77,8 @@ public class SimplePackerPacket extends SimplePacketBase {
             }, result -> {
                 String key = switch (result) {
                     case SUCCESS -> "";
-                    case SIZE_ERROR -> "caa.packer.error.size";
-                    case BLOCK_ERROR -> "caa.packer.error.block";
+                    case SIZE_ERROR -> "css.packer.error.size";
+                    case BLOCK_ERROR -> "css.packer.error.block";
                 };
                 if (key.isEmpty())
                     return;

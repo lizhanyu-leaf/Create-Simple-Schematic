@@ -130,7 +130,7 @@ public class SimplePackerHandler {
         firstPos = BlockPos.containing(bb.minX, bb.minY, bb.minZ);
         secondPos = BlockPos.containing(bb.maxX, bb.maxY, bb.maxZ);
 
-        player.displayClientMessage(Component.translatable("caa.packer.dimensions",
+        player.displayClientMessage(Component.translatable("css.packer.dimensions",
                 (int) bb.getXsize() + 1, (int) bb.getYsize() + 1, (int) bb.getZsize() + 1), true);
 
         return true;
@@ -149,7 +149,7 @@ public class SimplePackerHandler {
         if (player.isShiftKeyDown()) {
             firstPos = null;
             secondPos = null;
-            player.displayClientMessage(Component.translatable("caa.packer.abort"), true);
+            player.displayClientMessage(Component.translatable("css.packer.abort"), true);
             return true;
         }
 
@@ -165,18 +165,18 @@ public class SimplePackerHandler {
         }
 
         if (selectedPos == null) {
-            player.displayClientMessage(Component.translatable("caa.packer.noTarget"), true);
+            player.displayClientMessage(Component.translatable("css.packer.noTarget"), true);
             return true;
         }
 
         if (firstPos != null) {
             secondPos = selectedPos;
-            player.displayClientMessage(Component.translatable("caa.packer.secondPos"), true);
+            player.displayClientMessage(Component.translatable("css.packer.secondPos"), true);
             return true;
         }
 
         firstPos = selectedPos;
-        player.displayClientMessage(Component.translatable("caa.packer.firstPos"), true);
+        player.displayClientMessage(Component.translatable("css.packer.firstPos"), true);
         return true;
     }
 }
