@@ -1,4 +1,4 @@
-package com.leaf.createsimpleschematic.content;
+package com.leaf.createsimpleschematic.content.deploy;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -10,7 +10,7 @@ import com.simibubi.create.content.schematics.client.tools.ToolType;
 import com.leaf.createsimpleschematic.AllItems;
 import com.leaf.createsimpleschematic.AllPackets;
 import com.leaf.createsimpleschematic.CreateSimpleSchematic;
-import com.leaf.createsimpleschematic.content.tools.SimpleToolType;
+import com.leaf.createsimpleschematic.content.deploy.tools.SimpleToolType;
 import com.simibubi.create.foundation.blockEntity.IMultiBlockEntityContainer;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.utility.CreateLang;
@@ -260,8 +260,6 @@ public class SimpleSchematicHandler extends SchematicHandler {
     @Override
     public void updateRenderers() {
         for (SchematicRenderer renderer : renderers) {
-            if (renderer == null)
-                continue;
             renderer.update();
         }
     }

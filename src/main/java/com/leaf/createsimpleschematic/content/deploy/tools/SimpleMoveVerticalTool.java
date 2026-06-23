@@ -1,11 +1,11 @@
-package com.leaf.createsimpleschematic.content.tools;
+package com.leaf.createsimpleschematic.content.deploy.tools;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.simibubi.create.content.schematics.client.tools.MoveTool;
+import com.simibubi.create.content.schematics.client.tools.MoveVerticalTool;
 import net.createmod.catnip.render.SuperRenderTypeBuffer;
-import com.leaf.createsimpleschematic.content.SimpleSchematicHandler;
+import com.leaf.createsimpleschematic.content.deploy.SimpleSchematicHandler;
 
-public class SimpleMoveTool extends MoveTool {
+public class SimpleMoveVerticalTool extends MoveVerticalTool {
     @Override
     public void init() {
         super.init();

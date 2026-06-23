@@ -1,9 +1,9 @@
 package com.leaf.createsimpleschematic.foundation;
 
+import com.leaf.createsimpleschematic.content.pack.SimplePackerHandler;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.leaf.createsimpleschematic.content.SimpleSchematicHandler;
-import com.simibubi.create.CreateClient;
+import com.leaf.createsimpleschematic.content.deploy.SimpleSchematicHandler;
 import net.createmod.catnip.levelWrappers.WrappedClientLevel;
 import net.createmod.catnip.render.DefaultSuperRenderTypeBuffer;
 import net.createmod.catnip.render.SuperRenderTypeBuffer;
@@ -37,6 +37,7 @@ public class ClientEvents {
             return;
 
         SimpleSchematicHandler.SIMPLE_SCHEMATIC_HANDLER.tick();
+        SimplePackerHandler.SIMPLE_PACKER_HANDLER.tick();
     }
 
     @SubscribeEvent
@@ -57,7 +58,8 @@ public class ClientEvents {
 
         double delta = event.getScrollDelta();
 
-        if (SimpleSchematicHandler.SIMPLE_SCHEMATIC_HANDLER.mouseScrolled(delta))
+        if (SimpleSchematicHandler.SIMPLE_SCHEMATIC_HANDLER.mouseScrolled(delta)
+                || SimplePackerHandler.SIMPLE_PACKER_HANDLER.mouseScrolled(delta))
             event.setCanceled(true);
     }
 
@@ -69,7 +71,8 @@ public class ClientEvents {
         int button = event.getButton();
         boolean pressed = event.getAction() != 0;
 
-        if (SimpleSchematicHandler.SIMPLE_SCHEMATIC_HANDLER.onMouseInput(button, pressed))
+        if (SimpleSchematicHandler.SIMPLE_SCHEMATIC_HANDLER.onMouseInput(button, pressed)
+                || SimplePackerHandler.SIMPLE_PACKER_HANDLER.onMouseInput(button, pressed))
             event.setCanceled(true);
     }
 

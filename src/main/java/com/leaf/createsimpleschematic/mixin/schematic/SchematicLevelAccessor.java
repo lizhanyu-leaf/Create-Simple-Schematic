@@ -1,4 +1,4 @@
-package com.leaf.createsimpleschematic.mixin;
+package com.leaf.createsimpleschematic.mixin.schematic;
 
 import net.createmod.catnip.levelWrappers.SchematicLevel;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;

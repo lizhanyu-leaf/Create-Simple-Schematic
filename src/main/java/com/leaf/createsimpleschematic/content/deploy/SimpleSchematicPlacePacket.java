@@ -1,4 +1,4 @@
-package com.leaf.createsimpleschematic.content;
+package com.leaf.createsimpleschematic.content.deploy;
 
 import com.simibubi.create.AllSoundEvents;
 import com.simibubi.create.foundation.networking.SimplePacketBase;

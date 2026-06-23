@@ -1,11 +1,11 @@
-package com.leaf.createsimpleschematic.content;
+package com.leaf.createsimpleschematic.content.deploy;
 
 import com.simibubi.create.content.contraptions.StructureTransform;
 import com.simibubi.create.content.schematics.SchematicPrinter;
 import com.simibubi.create.content.schematics.SchematicProcessor;
 import com.leaf.createsimpleschematic.CreateSimpleSchematic;
-import com.leaf.createsimpleschematic.mixin.SchematicPrinterAccessor;
-import com.leaf.createsimpleschematic.mixin.SchematicLevelAccessor;
+import com.leaf.createsimpleschematic.mixin.schematic.SchematicPrinterAccessor;
+import com.leaf.createsimpleschematic.mixin.schematic.SchematicLevelAccessor;
 import net.createmod.catnip.levelWrappers.SchematicLevel;
 import net.createmod.catnip.math.BBHelper;
 import net.minecraft.core.BlockPos;

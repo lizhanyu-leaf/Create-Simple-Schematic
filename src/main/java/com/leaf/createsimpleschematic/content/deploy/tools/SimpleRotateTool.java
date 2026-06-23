@@ -1,11 +1,11 @@
-package com.leaf.createsimpleschematic.content.tools;
+package com.leaf.createsimpleschematic.content.deploy.tools;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.content.schematics.client.tools.RotateTool;
 import net.createmod.catnip.animation.AnimationTickHolder;
 import net.createmod.catnip.outliner.LineOutline;
 import net.createmod.catnip.render.SuperRenderTypeBuffer;
-import com.leaf.createsimpleschematic.content.SimpleSchematicHandler;
+import com.leaf.createsimpleschematic.content.deploy.SimpleSchematicHandler;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 

@@ -1,4 +1,4 @@
-package com.leaf.createsimpleschematic.content;
+package com.leaf.createsimpleschematic.content.deploy;
 
 import com.leaf.createsimpleschematic.CreateSimpleSchematic;
 import net.minecraft.ChatFormatting;

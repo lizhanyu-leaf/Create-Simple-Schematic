@@ -1,4 +1,4 @@
-package com.leaf.createsimpleschematic.content;
+package com.leaf.createsimpleschematic.content.deploy;
 
 import com.mojang.blaze3d.platform.Window;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -7,7 +7,7 @@ import com.simibubi.create.AllKeys;
 import com.simibubi.create.content.schematics.client.ToolSelectionScreen;
 import com.simibubi.create.content.schematics.client.tools.ToolType;
 import com.simibubi.create.foundation.gui.AllGuiTextures;
-import com.leaf.createsimpleschematic.mixin.ToolSelectionScreenAccessor;
+import com.leaf.createsimpleschematic.mixin.schematic.ToolSelectionScreenAccessor;
 import com.simibubi.create.foundation.utility.CreateLang;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;

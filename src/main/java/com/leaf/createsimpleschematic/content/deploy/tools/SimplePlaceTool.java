@@ -1,8 +1,8 @@
-package com.leaf.createsimpleschematic.content.tools;
+package com.leaf.createsimpleschematic.content.deploy.tools;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.simibubi.create.content.schematics.client.tools.PlaceTool;
-import com.leaf.createsimpleschematic.content.SimpleSchematicHandler;
+import com.leaf.createsimpleschematic.content.deploy.SimpleSchematicHandler;
 import net.createmod.catnip.render.SuperRenderTypeBuffer;
 
 public class SimplePlaceTool extends PlaceTool {
