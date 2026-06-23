@@ -260,6 +260,8 @@ public class SimpleSchematicHandler extends SchematicHandler {
     @Override
     public void updateRenderers() {
         for (SchematicRenderer renderer : renderers) {
+            if (renderer == null)
+                continue;
             renderer.update();
         }
     }
