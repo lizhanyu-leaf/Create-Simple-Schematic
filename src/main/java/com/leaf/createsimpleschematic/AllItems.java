@@ -4,7 +4,6 @@ import com.leaf.createsimpleschematic.content.pack.SimplePackerItem;
 import com.simibubi.create.foundation.data.AssetLookup;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.leaf.createsimpleschematic.content.deploy.SimpleSchematicItem;
-import net.minecraft.world.item.Item;
 
 import static com.leaf.createsimpleschematic.CreateSimpleSchematic.REGISTRATE;
 
