@@ -8,5 +8,6 @@
   "css.packer.noTarget": "按住 [Ctrl] 选择空气方块",
   "css.packer.secondPos": "第二个位置",
   "css.packer.error.size": "选区大小与任何蓝图均不匹配",
-  "css.packer.error.block": "结构无效, 检查是否缺失方块"
+  "css.packer.error.block": "结构无效, 检查是否缺失方块",
+  "css.packer.resourcepack.name": "盒装 “史莱姆”"
 }

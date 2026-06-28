@@ -1,6 +1,7 @@
 package com.leaf.createsimpleschematic.content.pack;
 
 import com.leaf.createsimpleschematic.CreateSimpleSchematic;
+import com.simibubi.create.content.fluids.tank.FluidTankBlockEntity;
 import com.simibubi.create.content.schematics.SchematicWorld;
 import com.simibubi.create.foundation.utility.Pair;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
@@ -15,6 +16,7 @@ import net.minecraft.nbt.NbtIo;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.pattern.BlockInWorld;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -99,11 +101,13 @@ public class StructureMetaCache {
                 boolean match = true;
                 for (var blockEntry: blockReader.getBlockMap().entrySet()) {
                     BlockPos targetPos = anchor.offset(blockEntry.getKey());
-                    BlockState state = blockCache.computeIfAbsent(targetPos.asLong(),
-                            k -> new BlockInWorld(world, targetPos, false)).getState();
+                    BlockInWorld inWorld = blockCache.computeIfAbsent(targetPos.asLong(),
+                            k -> new BlockInWorld(world, targetPos, false));
+                    BlockState state = inWorld.getState();
+                    BlockEntity entity = inWorld.getEntity();
                     // noinspection ConstantValue
                     if (state == null || !state.is(blockEntry.getValue().getBlock()) ||
-                            !matchPropertiesIgnoreRotation(blockEntry.getValue(), state)
+                            (!isIgnoredBlockEntity(entity) && !matchPropertiesIgnoreRotation(blockEntry.getValue(), state))
                     ) {
                         match = false;
                         break;
@@ -142,6 +146,10 @@ public class StructureMetaCache {
                 return false;
         }
         return true;
+    }
+
+    private static boolean isIgnoredBlockEntity(BlockEntity entity) {
+        return entity instanceof FluidTankBlockEntity;
     }
 
     private static final Set<Property<?>> ignoredProperties = Set.of(

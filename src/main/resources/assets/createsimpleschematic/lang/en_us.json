@@ -8,5 +8,6 @@
   "css.packer.noTarget": "Hold [Ctrl] to select Air blocks.",
   "css.packer.secondPos": "Second position set.",
   "css.packer.error.size": "Selection size does not match any schematic.",
-  "css.packer.error.block": "Invalid structure. Check for missing blocks."
+  "css.packer.error.block": "Invalid structure. Check for missing blocks.",
+  "css.packer.resourcepack.name": "Boxed 'Slime'"
 }
