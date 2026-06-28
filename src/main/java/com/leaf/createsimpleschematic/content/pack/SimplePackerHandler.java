@@ -6,6 +6,8 @@ import com.simibubi.create.AllKeys;
 import com.simibubi.create.AllSpecialTextures;
 import com.simibubi.create.foundation.utility.RaycastHelper;
 import net.createmod.catnip.animation.AnimationTickHolder;
+import net.createmod.catnip.animation.LerpedFloat;
+import net.createmod.catnip.animation.PhysicalFloat;
 import net.createmod.catnip.math.VecHelper;
 import net.createmod.catnip.outliner.Outliner;
 import net.minecraft.client.Minecraft;
@@ -36,12 +38,34 @@ public class SimplePackerHandler {
     private Direction selectedFace;
     private int range = 10;
 
+    public final PhysicalFloat slimeli_ = PhysicalFloat.create().withDrag(0.3);
+    private float lastPassiveScroll = 0;
+    private float passiveScroll = 0;
+
+    public final LerpedFloat height = LerpedFloat.linear();
+
+    public float getScroll(float partialTicks) {
+        return slimeli_.getValue(partialTicks) + Mth.lerp(partialTicks, lastPassiveScroll, passiveScroll);
+    }
+
+
     public void tick() {
         Minecraft mc = Minecraft.getInstance();
         Player player = mc.player;
         Level level = mc.level;
+
+        if (!mc.isPaused()) {
+            passiveScroll %= 360;
+            lastPassiveScroll = passiveScroll;
+            passiveScroll -= 2.87675f;
+            slimeli_.tick();
+            height.tickChaser();
+        }
+
         if (level == null || player == null || !AllItems.SIMPLE_PACKER.isIn(player.getMainHandItem()))
             return;
+
+        height.chase(AllKeys.ctrlDown() ? 0.8f : 0, 0.25f, LerpedFloat.Chaser.EXP);
 
         if (AllKeys.ACTIVATE_TOOL.isPressed()) {
             float pt = AnimationTickHolder.getPartialTicks();
