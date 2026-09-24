@@ -2,28 +2,26 @@
   "format_version": "1.9.0",
   "credit": "Made with Blockbench",
   "textures": {
-    "1": "createsimpleschematic:item/simple_packer/slimeli_"
+    "1": "createsimpleschematic:item/simple_packer/slime"
   },
   "elements": [
     {
       "name": "slime_inner",
-      "from": [4.5, 4.5, 4.5],
-      "to": [11.5, 11.5, 11.5],
-      "rotation": {"angle": 0, "axis": "y", "origin": [6, 4, 7]},
+      "from": [4, 4, 4],
+      "to": [12, 12, 12],
       "faces": {
         "north": {"uv": [4, 2, 6, 4], "texture": "#1"},
         "east": {"uv": [2, 2, 4, 4], "texture": "#1"},
         "south": {"uv": [0, 2, 2, 4], "texture": "#1"},
         "west": {"uv": [6, 2, 8, 4], "texture": "#1"},
         "up": {"uv": [2, 0, 4, 2], "texture": "#1"},
-        "down": {"uv": [4, 0, 6, 2], "texture": "#1"}
+        "down": {"uv": [4, 0, 6, 2], "rotation": 270, "texture": "#1"}
       }
     },
     {
       "name": "slime_outer",
-      "from": [4, 4, 4],
-      "to": [12, 12, 12],
-      "rotation": {"angle": 0, "axis": "y", "origin": [5, 4, 6]},
+      "from": [3.5, 3.5, 3.5],
+      "to": [12.5, 12.5, 12.5],
       "faces": {
         "north": {"uv": [12, 2, 14, 4], "texture": "#1"},
         "east": {"uv": [10, 2, 12, 4], "texture": "#1"},
@@ -32,6 +30,5 @@
         "up": {"uv": [10, 0, 12, 2], "rotation": 270, "texture": "#1"}
       }
     }
-  ],
-  "display": {}
+  ]
 }
