@@ -2,6 +2,7 @@
   "item.createsimpleschematic.simple_schematic": "Engineering Set",
   "item.createsimpleschematic.simple_schematic.dash": " - ",
   "item.createsimpleschematic.simple_packer": "Boxed Slime",
+  "css.schematic.error.invalid": "Expired File.",
   "css.packer.abort": "Removed selection.",
   "css.packer.dimensions": "Selection Dimensions: %sx%sx%s",
   "css.packer.firstPos": "First position set.",
