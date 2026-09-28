@@ -1,0 +1,20 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.leaf.createsimpleschematic.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "create.BeltFunnelBlockAccessor",
+    "create.BlockHelperAccessor",
+    "schematic.SchematicPrinterAccessor"
+  ],
+  "client": [
+    "schematic.ToolSelectionScreenAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
