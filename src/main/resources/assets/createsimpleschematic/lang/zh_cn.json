@@ -2,6 +2,7 @@
   "item.createsimpleschematic.simple_schematic": "工程集合",
   "item.createsimpleschematic.simple_schematic.dash": " - ",
   "item.createsimpleschematic.simple_packer": "盒装史莱姆",
+  "css.schematic.error.invalid": "文件已失效",
   "css.packer.abort": "删除选择",
   "css.packer.dimensions": "选区大小：%sx%sx%s",
   "css.packer.firstPos": "第一个位置",
