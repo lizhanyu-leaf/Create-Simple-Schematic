@@ -8,6 +8,8 @@
     "minVersion": "0.5.2"
   },
   "mixins": [
+    "create.BeltFunnelBlockAccessor",
+    "create.BlockHelperAccessor",
     "schematic.SchematicPrinterAccessor",
     "schematic.SchematicWorldAccessor"
   ],
