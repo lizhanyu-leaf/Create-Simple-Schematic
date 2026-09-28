@@ -117,7 +117,7 @@ public class SimplePackerHandler {
     }
 
     public boolean mouseScrolled(double delta) {
-        if (!AllKeys.ctrlDown())
+        if (!AllKeys.ACTIVATE_TOOL.isPressed())
             return false;
 
         Minecraft mc = Minecraft.getInstance();

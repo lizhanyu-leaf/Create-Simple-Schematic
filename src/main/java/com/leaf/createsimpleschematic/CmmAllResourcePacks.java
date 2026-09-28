@@ -17,9 +17,9 @@ public class CmmAllResourcePacks {
     public static void onAddPackFinders(AddPackFindersEvent event) {
         if (event.getPackType() == PackType.CLIENT_RESOURCES) {
             var pack = Pack.readMetaAndCreate(
-                    "createsimpleschematic:simple_packer_slimeli_texture",                          // 资源包 ID
+                    "createsimpleschematic:simple_packer_slimeli_texture",   // 资源包 ID
                     Component.translatable("css.packer.resourcepack.name"), // 显示名称
-                    false,                                       // 始终启用
+                    false,                                                        // 始终启用
                     p -> new ModFilePackResources(
                         "simple_packer_slimeli_texture",
                             ModList.get().getModFileById("createsimpleschematic").getFile(),

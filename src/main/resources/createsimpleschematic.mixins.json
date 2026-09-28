@@ -8,8 +8,10 @@
     "minVersion": "0.5.2"
   },
   "mixins": [
-    "schematic.SchematicPrinterAccessor",
-    "schematic.SchematicLevelAccessor"
+    "create.BeltFunnelBlockAccessor",
+    "create.BlockHelperAccessor",
+    "schematic.SchematicLevelAccessor",
+    "schematic.SchematicPrinterAccessor"
   ],
   "client": [
     "schematic.ToolSelectionScreenAccessor"
