@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(BlockHelper.class)
 public interface BlockHelperAccessor {
-    @Invoker("placeRailWithoutUpdate")
+    @Invoker(value = "placeRailWithoutUpdate", remap = false)
     static void invokePlaceRailWithoutUpdate(Level world, BlockState state, BlockPos target) {
         throw new AssertionError();
     }

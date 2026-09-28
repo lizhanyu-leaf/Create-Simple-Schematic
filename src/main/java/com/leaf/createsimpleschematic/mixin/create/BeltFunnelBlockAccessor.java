@@ -9,6 +9,6 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(BeltFunnelBlock.class)
 public interface BeltFunnelBlockAccessor {
 
-    @Accessor("parent")
+    @Accessor(value = "parent", remap = false)
     BlockEntry<? extends FunnelBlock> getParent();
 }
